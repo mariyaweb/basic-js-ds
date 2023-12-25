@@ -8,8 +8,8 @@ const { NotImplementedError } = require('../extensions/index.js');
 */
 
 class ListNode {
-  constructor(value) {
-    this.value = value;
+  constructor(data) {
+    this.data = data;
     this.left = null;
     this.right = null;
   }
@@ -34,7 +34,7 @@ class BinarySearchTree {
     let current = this.head;
 
     while (current) {
-      if (addNode.value < current.value) {
+      if (addNode.data < current.data) {
         if (current.left) {
           current = current.left;
         } else {
@@ -58,25 +58,45 @@ class BinarySearchTree {
     if (!current) {
       return false;
     }
-    if (current.value === data) {
-      return true;
-    }
 
     while (current) {
-      if (current.value < data) {
+      if (current.data === data) {
+        return true;
+      }
+
+      if (current.data < data) {
         current = current.right;
       } else {
         current = current.left;
       }
     }
+
+    return false;
   }
 
-  find(/* data */) {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
+  find(data) {
+    let current = this.head;
+
+    if (!current) {
+      return null;
+    }
+
+    while (current) {
+      if (current.data === data) {
+        return current;
+      }
+
+      if (current.data < data) {
+        current = current.right;
+      } else {
+        current = current.left;
+      }
+    }
+
+    return null;
   }
 
-  remove(/* data */) {
+  remove(/*data*/) {
     throw new NotImplementedError('Not implemented');
     // remove line with error and write your code here
   }
